@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  --color-surface:       #c0c0c0;
+  --color-border-light:  #ffffff;
+  --color-border-dark:   #808080;
+  --color-border-outer:  #404040;
+  --color-cell-mine-hit: #ff0000;
+  --color-lcd-bg:        #000000;
+  --color-lcd-fg:        #ff0000;
+  --color-lcd-dim:       #400000;
+  --cell-size:           clamp(24px, 4vw, 36px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #3a3a3a;
+  font-family: system-ui, -apple-system, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bevel-raised {
+  border-top:    2px solid var(--color-border-light);
+  border-left:   2px solid var(--color-border-light);
+  border-bottom: 2px solid var(--color-border-dark);
+  border-right:  2px solid var(--color-border-dark);
+}
+
+.bevel-inset {
+  border-top:    2px solid var(--color-border-dark);
+  border-left:   2px solid var(--color-border-dark);
+  border-bottom: 2px solid var(--color-border-light);
+  border-right:  2px solid var(--color-border-light);
+}
+
+.panel-outer {
+  border-top:    3px solid var(--color-border-light);
+  border-left:   3px solid var(--color-border-light);
+  border-bottom: 3px solid var(--color-border-outer);
+  border-right:  3px solid var(--color-border-outer);
+  background:    var(--color-surface);
+  padding:       6px;
+}
+
+.panel-inset {
+  border-top:    2px solid var(--color-border-outer);
+  border-left:   2px solid var(--color-border-outer);
+  border-bottom: 2px solid var(--color-border-light);
+  border-right:  2px solid var(--color-border-light);
+}
+
+@keyframes confetti-fall {
+  0%   { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes confetti-sway {
+  0%, 100% { margin-left: 0; }
+  50%       { margin-left: 40px; }
+}
+
+.confetti-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  animation:
+    confetti-fall 3s ease-in forwards,
+    confetti-sway 0.8s ease-in-out infinite;
+}
+
+@keyframes modal-appear {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.modal-content {
+  animation: modal-appear 150ms ease-out;
+}

@@ -1,0 +1,1 @@
+export { ScoreSubmitModal } from './ScoreSubmitModal'
